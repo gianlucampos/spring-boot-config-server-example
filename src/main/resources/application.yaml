@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-boot-config-server-example
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gianlucampos/config-repo-example
+          username: ${GIT_USERNAME}
+          password: ${GIT_TOKEN}
+          default-label: develop
+          clone-on-start: false
+          search-paths:
+            - configs/kafka-migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,refresh
